@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 27 ene 2025, 17:16:15 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="elorBase" name="com.elorBase.server.elorBaseServer.dataBase.entity.Solicitud" optimistic-lock="none" table="solicitud">
+        <id name="idReunion" type="int">
+            <column name="idReunion"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="idProfesor" type="int">
+            <column name="idProfesor" not-null="true"/>
+        </property>
+        <property name="confirmada" type="string">
+            <column length="2" name="confirmada"/>
+        </property>
+    </class>
+</hibernate-mapping>

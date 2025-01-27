@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 27 ene 2025, 17:16:15 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="elorBase" name="com.elorBase.server.elorBaseServer.dataBase.entity.Matriculacion" optimistic-lock="none" table="matriculacion">
+        <id name="idAlumno" type="int">
+            <column name="idAlumno"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="idCiclo" type="string">
+            <column length="5" name="idCiclo" not-null="true"/>
+        </property>
+        <property name="modalidad" type="string">
+            <column length="30" name="modalidad" not-null="true"/>
+        </property>
+        <property name="curso" type="int">
+            <column name="curso" not-null="true"/>
+        </property>
+        <property name="fecha" type="date">
+            <column length="10" name="fecha" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

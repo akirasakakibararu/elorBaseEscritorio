@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 27 ene 2025, 17:16:15 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="elorBase" name="com.elorBase.server.elorBaseServer.dataBase.entity.Horario" optimistic-lock="none" table="horario">
+        <id name="idHorario" type="java.lang.Integer">
+            <column name="idHorario"/>
+            <generator class="identity"/>
+        </id>
+        <property name="hora" type="int">
+            <column name="hora" not-null="true"/>
+        </property>
+        <property name="dia" type="string">
+            <column length="9" name="dia" not-null="true"/>
+        </property>
+        <property name="aula" type="java.lang.Integer">
+            <column name="aula"/>
+        </property>
+        <property name="idAsignatura" type="string">
+            <column length="4" name="idAsignatura"/>
+        </property>
+    </class>
+</hibernate-mapping>

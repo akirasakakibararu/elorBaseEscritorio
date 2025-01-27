@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 27 ene 2025, 17:16:15 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="elorBase" name="com.elorBase.server.elorBaseServer.dataBase.entity.Formacion" optimistic-lock="none" table="formacion">
+        <composite-id class="com.elorBase.server.elorBaseServer.dataBase.entity.FormacionId" name="id">
+            <key-property name="idAsignatura" type="string">
+                <column length="4" name="idAsignatura"/>
+            </key-property>
+            <key-property name="idCiclo" type="string">
+                <column length="5" name="idCiclo"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

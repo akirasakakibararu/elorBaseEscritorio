@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 27 ene 2025, 17:16:15 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="elorBase" name="com.elorBase.server.elorBaseServer.dataBase.entity.Reunion" optimistic-lock="none" table="reunion">
+        <id name="idReunion" type="java.lang.Integer">
+            <column name="idReunion"/>
+            <generator class="identity"/>
+        </id>
+        <property name="solicitante" type="string">
+            <column length="30" name="solicitante" not-null="true"/>
+        </property>
+        <property name="receptor" type="string">
+            <column length="30" name="receptor" not-null="true"/>
+        </property>
+        <property name="estado" type="string">
+            <column length="15" name="estado"/>
+        </property>
+        <property name="titulo" type="string">
+            <column length="15" name="titulo"/>
+        </property>
+        <property name="asunto" type="string">
+            <column length="100" name="asunto" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

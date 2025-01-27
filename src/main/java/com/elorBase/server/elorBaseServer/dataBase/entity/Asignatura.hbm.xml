@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 27 ene 2025, 17:16:15 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="elorBase" name="com.elorBase.server.elorBaseServer.dataBase.entity.Asignatura" optimistic-lock="none" table="asignatura">
+        <id name="idAsignatura" type="string">
+            <column length="4" name="idAsignatura"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="nombre" type="string">
+            <column length="150" name="nombre" not-null="true"/>
+        </property>
+        <property name="horasTotales" type="int">
+            <column name="horasTotales" not-null="true"/>
+        </property>
+        <property name="curso" type="java.lang.Integer">
+            <column name="curso"/>
+        </property>
+        <property name="idProfesor" type="java.lang.Integer">
+            <column name="idProfesor"/>
+        </property>
+    </class>
+</hibernate-mapping>
