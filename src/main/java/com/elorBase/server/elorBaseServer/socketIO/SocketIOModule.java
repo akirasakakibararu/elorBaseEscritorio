@@ -1,8 +1,17 @@
 package com.elorBase.server.elorBaseServer.socketIO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
+import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
+import com.elorBase.server.elorBaseServer.dataBase.entity.Horario;
+import com.elorBase.server.elorBaseServer.socketIO.config.Events;
+import com.elorBase.server.elorBaseServer.socketIO.model.MessageInput;
+import com.elorBase.server.elorBaseServer.socketIO.model.MessageOutput;
+import com.google.gson.Gson;
 
 public class SocketIOModule {
 	private SocketIOServer server = null;
@@ -16,7 +25,7 @@ public class SocketIOModule {
 		server.addDisconnectListener(onDisconnect());
 
 		// Custom events
-		//server.addEventListener(Events.OBTENER_ASIGNATURAS.value, MessageInput.class, this.obtenerAsignaturas());
+		server.addEventListener(Events.GET_HORARIO_SEMANAL_PROFESOR.value, MessageInput.class, this.obtenerHorarioProfesor());
 	}
 
 	// Default events
@@ -36,6 +45,24 @@ public class SocketIOModule {
 	}
 
 	// Custom events
+	
+
+	private DataListener<MessageInput> obtenerHorarioProfesor() {
+		return ((client, data, ackSender) -> {
+			// This time, we simply write the message in data
+			System.out.println("Client from " + client.getRemoteAddress() + " wants to getAll");
+
+			// We access to database and... we get a bunch of people
+			List<Horario> horarios = new ArrayList<Horario>();
+			// We parse the answer into JSON
+			String answerMessage = new Gson().toJson(horarios);
+
+			// ... and we send it back to the client inside a MessageOutput
+			MessageOutput messageOutput = new MessageOutput(answerMessage);
+			client.sendEvent(Events.GET_HORARIO_SEMANAL_PROFESOR_ANSWER.value, messageOutput);
+		});
+	}
+
 
 	/*private DataListener<MessageInput> obtenerAsignaturas() {
 		return ((client, data, ackSender) -> {

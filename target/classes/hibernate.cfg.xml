@@ -15,5 +15,7 @@
         
         <!-- Configuraciones de las entidades -->
         <mapping class="com.elorBase.server.elorBaseServer.dataBase.entity.Asignatura"/>
+        <mapping class="com.elorBase.server.elorBaseServer.dataBase.entity.Profesor"/>
+        <mapping class="com.elorBase.server.elorBaseServer.dataBase.entity.Horario"/>
     </session-factory>
 </hibernate-configuration>
