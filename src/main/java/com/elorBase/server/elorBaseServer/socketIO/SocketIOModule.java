@@ -57,28 +57,22 @@ public class SocketIOModule {
 	private DataListener<MessageInput> obtenerHorarioProfesor() {
 		return ((client, data, ackSender) -> {
 			try {
-                // Convertir el mensaje JSON recibido en un objeto JsonObject
                 String message = data.getMessage();
                 Gson gson = new Gson();
                 JsonObject jsonObject = gson.fromJson(message, JsonObject.class);
                 
-                // Obtener el ID del profesor desde el mensaje JSON
                 //int idProfesor = jsonObject.get("idProfesor").getAsInt();
                 int idProfesor = 1;
                 
-                // Llamar al método que consulta la base de datos para obtener el horario
                 List<Object[]> horario = ConsultasProfesor.mostrar_horario_profesor(idProfesor);
 
-                // Convertir el horario a formato JSON
                 String answerMessage = gson.toJson(horario);
 
-                // Enviar la respuesta al cliente
                 MessageOutput messageOutput = new MessageOutput(answerMessage);
                 client.sendEvent(Events.GET_HORARIO_SEMANAL_PROFESOR_ANSWER.value, messageOutput);
                 
             } catch (Exception e) {
                 e.printStackTrace();
-                // Enviar error al cliente si ocurre una excepción
                 MessageOutput errorMessage = new MessageOutput("Error fetching professor schedule: " + e.getMessage());
                 client.sendEvent(Events.GET_HORARIO_SEMANAL_PROFESOR_ANSWER.value, errorMessage);
             }

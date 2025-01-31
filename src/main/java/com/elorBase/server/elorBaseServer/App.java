@@ -19,7 +19,16 @@ public class App {
 	private static final int PORT = 3000;
 
 	public static void main(String[] args) {
-		 int idProfesor = 1;
+		// Server configuration 
+				Configuration config = new Configuration ();
+				config.setHostname(HOST_NAME);
+				config.setPort(PORT);
+				
+				// We start the server
+				SocketIOServer server = new SocketIOServer(config);
+				SocketIOModule module = new SocketIOModule(server);
+				module.start();
+		 /*int idProfesor = 1;
 		    List<Object[]> horario = ConsultasProfesor.mostrar_horario_profesor(idProfesor);
 
 		    for (Object[] row : horario) {
@@ -27,7 +36,7 @@ public class App {
 		        System.out.println("Día: " + row[1]);
 		        System.out.println("Aula: " + row[2]);
 		        System.out.println("Asignatura: " + row[3]);
-		    }
+		    }*/
 
 		/*
 		 * // Server configuration Configuration config = new Configuration ();
