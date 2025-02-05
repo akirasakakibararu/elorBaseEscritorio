@@ -14,8 +14,15 @@
         <property name="hibernate.format_sql">true</property>
         
         <!-- Configuraciones de las entidades -->
-        <mapping class="com.elorBase.server.elorBaseServer.dataBase.entity.Asignatura"/>
-        <mapping class="com.elorBase.server.elorBaseServer.dataBase.entity.Profesor"/>
-        <mapping class="com.elorBase.server.elorBaseServer.dataBase.entity.Horario"/>
+        <mapping resource="com/elorBase/server/elorBaseServer/dataBase/entity/Profesor.hbm.xml"/>
+        <mapping resource="com/elorBase/server/elorBaseServer/dataBase/entity/Horarioreunion.hbm.xml"/>
+        <mapping resource="com/elorBase/server/elorBaseServer/dataBase/entity/Solicitud.hbm.xml"/>
+        <mapping resource="com/elorBase/server/elorBaseServer/dataBase/entity/Asignatura.hbm.xml"/>
+        <mapping resource="com/elorBase/server/elorBaseServer/dataBase/entity/Cicloformativo.hbm.xml"/>
+        <mapping resource="com/elorBase/server/elorBaseServer/dataBase/entity/Horario.hbm.xml"/>
+        <mapping resource="com/elorBase/server/elorBaseServer/dataBase/entity/Alumno.hbm.xml"/>
+        <mapping resource="com/elorBase/server/elorBaseServer/dataBase/entity/Formacion.hbm.xml"/>
+        <mapping resource="com/elorBase/server/elorBaseServer/dataBase/entity/Matriculacion.hbm.xml"/>
+        <mapping resource="com/elorBase/server/elorBaseServer/dataBase/entity/Reunion.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

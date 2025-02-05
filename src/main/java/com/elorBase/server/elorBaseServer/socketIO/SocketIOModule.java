@@ -34,6 +34,7 @@ public class SocketIOModule {
 
 		// Custom events
 		server.addEventListener(Events.GET_HORARIO_SEMANAL_PROFESOR.value, MessageInput.class, this.obtenerHorarioProfesor());
+		//server.addEventListener(Events.OBTENER_CURSOS.value, MessageInput.class, this.obtenerCursos());
 	}
 
 	// Default events
@@ -54,6 +55,11 @@ public class SocketIOModule {
 
 	// Custom events
 	
+	private DataListener<MessageInput> obtenerCursos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	private DataListener<MessageInput> obtenerHorarioProfesor() {
 		return ((client, data, ackSender) -> {
 			try {
@@ -61,12 +67,13 @@ public class SocketIOModule {
                 Gson gson = new Gson();
                 JsonObject jsonObject = gson.fromJson(message, JsonObject.class);
                 
-                //int idProfesor = jsonObject.get("idProfesor").getAsInt();
-                int idProfesor = 1;
+                int idProfesor = jsonObject.get("idProfesor").getAsInt();
                 
                 List<Object[]> horario = ConsultasProfesor.mostrar_horario_profesor(idProfesor);
+                System.out.println("Horario: " + horario);
 
                 String answerMessage = gson.toJson(horario);
+                System.out.println("Sending schedule: " + answerMessage);
 
                 MessageOutput messageOutput = new MessageOutput(answerMessage);
                 client.sendEvent(Events.GET_HORARIO_SEMANAL_PROFESOR_ANSWER.value, messageOutput);
