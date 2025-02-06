@@ -24,8 +24,10 @@ public class ConsultasProfesor {
 		Session session = sesion.openSession();
 		Transaction transaction = session.beginTransaction();
 
-		String hql = "SELECT h.hora, h.dia, h.aula, h.idAsignatura, a.nombre " + "FROM Horario h "
-				+ "JOIN Asignatura a ON h.idAsignatura = a.idAsignatura " + "WHERE a.idProfesor = :idProfesor";
+		String hql = "SELECT h.hora, h.dia, h.aula, h.idAsignatura, a.nombre "
+				+ "FROM Horario h "
+				+ "JOIN Asignatura a ON h.idAsignatura = a.idAsignatura "
+				+ "WHERE a.idProfesor = :idProfesor";
 
 		Query q = session.createQuery(hql);
 		q.setParameter("idProfesor", id);
@@ -35,24 +37,27 @@ public class ConsultasProfesor {
 		return results;
 	}
 
-	public static List<Object[]> mostrar_horario_reunion(int id) {
+	public static List<Object[]> mostrar_reuniones_por_receptor(String profesor) {
 
-		List<Object[]> results = null;
+	    List<Object[]> results = null;
 
-		SessionFactory sesion = HibernateUtil.getSessionFactory();
+	    SessionFactory sesion = HibernateUtil.getSessionFactory();
+	    Session session = sesion.openSession();
+	    Transaction transaction = session.beginTransaction();
 
-		Session session = sesion.openSession();
+	    String hql = "SELECT r.titulo, r.asunto, hr.dia, hr.hora, hr.aula, r.solicitante, r.receptor "
+	               + "FROM Reunion r "
+	               + "JOIN Horarioreunion hr ON r.idReunion = hr.idReunion "
+	               + "WHERE r.receptor = :receptorBuscado";
 
-		String hql = "SELECT r.solicitante, r.receptor, r.estado, r.titulo, r.asunto, " + " hr.dia, hr.hora, hr.aula"
-				+ "FROM HorarioReunion hr " + "JOIN Reunion r ON hr.idReunion = r.idReunion "
-				+ "WHERE a.idProfesor = :idProfesor";
+	    Query query = session.createQuery(hql);
+	    query.setParameter("receptorBuscado", profesor);
 
-		Query q = session.createQuery(hql);
-		q.setParameter("idProfesor", id);
+	    results = query.list();
+	    transaction.commit();
 
-		results = q.list();
-
-		return results;
+	    session.close();
+	    return results;
 	}
 
 	public static void crear_reunion(String solicitanteIntroducido, String receptorIntroducido,

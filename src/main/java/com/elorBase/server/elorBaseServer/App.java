@@ -34,8 +34,9 @@ public class App {
 		// probarMetodo_mostrar_horario_alumno(2);
 		// probarMetodo_mostrar_horario_profesor(1);
 		// probar_metodo_mostrar_datos_alumno(10);
-		//probar_metodo_cambiar_estado_reunion("Aceptada", 5);
-		probar_metodo_crear_reunion();
+		// probar_metodo_cambiar_estado_reunion("Aceptada", 5);
+		//probar_metodo_crear_reunion();
+		probarMetodo_mostrar_horario_reunion("Maria Gonzalez");
 	}
 
 	private static void probarMetodo_mostrar_horario_profesor(int idProfesorPrueba) {
@@ -54,6 +55,27 @@ public class App {
 		} else {
 			System.out.println("No se encontraron resultados para el horario del alumno.");
 		}
+	}
+	
+	private static void probarMetodo_mostrar_horario_reunion(String profesor) {
+	    String nombreProfesor = profesor;
+
+	    List<Object[]> horarioProfesor = ConsultasProfesor.mostrar_reuniones_por_receptor(nombreProfesor);
+
+	    if (horarioProfesor != null && !horarioProfesor.isEmpty()) {
+	        for (Object[] row : horarioProfesor) {
+	            System.out.println("Reuniones:");
+	            System.out.println("Titulo: " + row[0]);
+	            System.out.println("Asunto: " + row[1]);
+	            System.out.println("Dia: " + row[2]);
+	            System.out.println("Hora: " + row[3]);
+	            System.out.println("Aula: " + row[4]);
+	            System.out.println("Solicitante: " + row[5]);
+	            System.out.println("Receptor: " + row[6]);
+	        }
+	    } else {
+	        System.out.println("No existen reuniones del profesor: " + nombreProfesor);
+	    }
 	}
 
 	private static void probarMetodo_mostrar_horario_alumno(int idAlumnoPrueba) {
