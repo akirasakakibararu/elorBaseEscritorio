@@ -7,8 +7,8 @@ public enum Events {
 	GET_REUNION ("getReunion"),
 	GET_HORARIO_SEMANAL_ALUMNO ("getHorarioSemanalAlumno"),
 	GET_ALL_OFERTA_CURSOS ("getAllOfertaCursos"),
-	OBTENER_CURSOS ("obtenerCursos");
-	
+	OBTENER_CURSOS ("obtenerCursos"),
+	GET_DATOS_ALUMNO ("getDatosAlumnos");
 	public final String value;
 
 	private Events(String value) {

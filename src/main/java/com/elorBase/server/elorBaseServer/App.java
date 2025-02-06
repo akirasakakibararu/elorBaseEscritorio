@@ -36,7 +36,7 @@ public class App {
 		// probar_metodo_mostrar_datos_alumno(10);
 		// probar_metodo_cambiar_estado_reunion("Aceptada", 5);
 		//probar_metodo_crear_reunion();
-		probarMetodo_mostrar_horario_reunion("Maria Gonzalez");
+		probarMetodo_mostrar_horario_reunion("Maria Lopez");
 	}
 
 	private static void probarMetodo_mostrar_horario_profesor(int idProfesorPrueba) {
