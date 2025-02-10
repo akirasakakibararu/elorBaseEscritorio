@@ -13,6 +13,7 @@ import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 import com.elorBase.server.elorBaseServer.HibernateUtil;
+import com.elorBase.server.elorBaseServer.dataBase.consultas.ConsultasAlumno;
 import com.elorBase.server.elorBaseServer.dataBase.consultas.ConsultasProfesor;
 import com.elorBase.server.elorBaseServer.dataBase.entity.Horario;
 import com.elorBase.server.elorBaseServer.socketIO.config.Events;
@@ -34,7 +35,7 @@ public class SocketIOModule {
 
 		// Custom events
 		server.addEventListener(Events.GET_HORARIO_SEMANAL_PROFESOR.value, MessageInput.class, this.obtenerHorarioProfesor());
-		//server.addEventListener(Events.OBTENER_CURSOS.value, MessageInput.class, this.obtenerCursos());
+		server.addEventListener(Events.GET_HORARIO_SEMANAL_ALUMNO.value, MessageInput.class, this.obtenerHorarioAlumno());
 	}
 
 	// Default events
@@ -70,6 +71,32 @@ public class SocketIOModule {
                 int idProfesor = jsonObject.get("idProfesor").getAsInt();
                 
                 List<Object[]> horario = ConsultasProfesor.mostrar_horario_profesor(idProfesor);
+                System.out.println("Horario: " + horario);
+
+                String answerMessage = gson.toJson(horario);
+                System.out.println("Sending schedule: " + answerMessage);
+
+                MessageOutput messageOutput = new MessageOutput(answerMessage);
+                client.sendEvent(Events.GET_HORARIO_SEMANAL_PROFESOR_ANSWER.value, messageOutput);
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                MessageOutput errorMessage = new MessageOutput("Error fetching professor schedule: " + e.getMessage());
+                client.sendEvent(Events.GET_HORARIO_SEMANAL_PROFESOR_ANSWER.value, errorMessage);
+            }
+		});
+	}
+	
+	private DataListener<MessageInput> obtenerHorarioAlumno() {
+		return ((client, data, ackSender) -> {
+			try {
+                String message = data.getMessage();
+                Gson gson = new Gson();
+                JsonObject jsonObject = gson.fromJson(message, JsonObject.class);
+                
+                int idAlumno = jsonObject.get("idAlumno").getAsInt();
+                
+                List<Object[]> horario = ConsultasAlumno.mostrar_horario_alumno(idAlumno);
                 System.out.println("Horario: " + horario);
 
                 String answerMessage = gson.toJson(horario);

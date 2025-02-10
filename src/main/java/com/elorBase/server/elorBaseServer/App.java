@@ -31,12 +31,12 @@ public class App {
 		SocketIOModule module = new SocketIOModule(server);
 		module.start();
 
-		// probarMetodo_mostrar_horario_alumno(2);
-		// probarMetodo_mostrar_horario_profesor(1);
-		// probar_metodo_mostrar_datos_alumno(10);
-		// probar_metodo_cambiar_estado_reunion("Aceptada", 5);
+		probarMetodo_mostrar_horario_alumno(2);
+		//probarMetodo_mostrar_horario_profesor(1);
+		//probar_metodo_mostrar_datos_alumno(10);
+		//probar_metodo_cambiar_estado_reunion("Aceptada", 5);
 		//probar_metodo_crear_reunion();
-		probarMetodo_mostrar_horario_reunion("Maria Lopez");
+		//probarMetodo_mostrar_horario_reunion("Maria Lopez");
 	}
 
 	private static void probarMetodo_mostrar_horario_profesor(int idProfesorPrueba) {
@@ -53,7 +53,7 @@ public class App {
 				System.out.println("Nombre: " + row[4]);
 			}
 		} else {
-			System.out.println("No se encontraron resultados para el horario del alumno.");
+			System.out.println("No se encontraron resultados para el horario del profesor.");
 		}
 	}
 	
